@@ -8,6 +8,7 @@ public class DeffenceObserver {
     private static boolean positionHeli = false;
     private static boolean positionTank = false;
     private static boolean positionSubmarine = false;
+    private static String mainControllerMsg;
     
     public static void registerWindow(Helicopter hw){
         helicopter = hw;
@@ -42,5 +43,13 @@ public class DeffenceObserver {
     } 
     public static boolean getPositionSubmarine(){
         return positionSubmarine;
+    }
+    //Function for set mainController Message
+    public static void setMainControllerMsg(String msg){
+        mainControllerMsg = msg;
+    }
+    //Function for get mainController Message
+    public static String getMainControllerMsg(){
+        return mainControllerMsg;
     }
 }

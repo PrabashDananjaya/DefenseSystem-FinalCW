@@ -35,6 +35,12 @@ public class Helicopter extends javax.swing.JFrame {
         }
     }
     
+    //set Arrived Msg and Send Msg
+    public void setMsgScreen(String newMsg){
+        String oldMsg = contentTxtarea.getText();
+        contentTxtarea.setText(oldMsg+"\n\n"+newMsg);
+    }
+    
     public Helicopter() {
         initComponents();
         setTitle("Helicopter");
@@ -76,6 +82,7 @@ public class Helicopter extends javax.swing.JFrame {
         areaStatusLbl.setText("Area Not Cleared");
         areaStatusLbl.setPreferredSize(new java.awt.Dimension(145, 22));
 
+        contentTxtarea.setEditable(false);
         contentTxtarea.setBackground(new java.awt.Color(153, 153, 255));
         contentTxtarea.setColumns(20);
         contentTxtarea.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
