@@ -49,6 +49,11 @@ public class Tank extends javax.swing.JFrame {
             shootBtn.setEnabled(false);
         }
     }
+    
+    public void setMsgScreen(String msg){
+        String oldMsg = contentTxtArea.getText();
+        contentTxtArea.setText(oldMsg+"\n\n"+msg);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,6 +84,7 @@ public class Tank extends javax.swing.JFrame {
         areaStatusLbl.setForeground(new java.awt.Color(0, 102, 102));
         areaStatusLbl.setText("Area Not Cleared");
 
+        contentTxtArea.setEditable(false);
         contentTxtArea.setBackground(new java.awt.Color(0, 255, 153));
         contentTxtArea.setColumns(20);
         contentTxtArea.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -86,12 +92,18 @@ public class Tank extends javax.swing.JFrame {
         jScrollPane1.setViewportView(contentTxtArea);
 
         msgTxtField.setBackground(new java.awt.Color(102, 255, 153));
-        msgTxtField.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        msgTxtField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        msgTxtField.setForeground(new java.awt.Color(1, 80, 41));
 
         sendBtn.setBackground(new java.awt.Color(0, 102, 51));
         sendBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         sendBtn.setForeground(new java.awt.Color(255, 255, 255));
         sendBtn.setText("SEND");
+        sendBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendBtnActionPerformed(evt);
+            }
+        });
 
         shootBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         shootBtn.setForeground(new java.awt.Color(0, 102, 51));
@@ -188,12 +200,21 @@ public class Tank extends javax.swing.JFrame {
             DeffenceObserver.setPositionTank(true);
         }else{
             DeffenceObserver.setPositionTank(false);
-            redarBtn.setEnabled(false);
-            missileBtn.setEnabled(false);
-            rotateShootBtn.setEnabled(false);
-            shootBtn.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox1StateChanged
+
+    private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
+ 
+        if(msgTxtField.getText().trim().isEmpty()){
+            //no masseges then no action
+        }else{
+            String tankMsg = msgTxtField.getText().trim();
+            DeffenceObserver.maincontroller.setMcMsgScreen(" Tank             : "+tankMsg);
+            String oldMsg = contentTxtArea.getText();
+            contentTxtArea.setText(oldMsg+"\n\n"+" Me                        : "+tankMsg);
+            msgTxtField.setText("");
+        }
+    }//GEN-LAST:event_sendBtnActionPerformed
 
     /**
      * @param args the command line arguments

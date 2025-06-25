@@ -83,19 +83,24 @@ public class Helicopter extends javax.swing.JFrame {
         areaStatusLbl.setPreferredSize(new java.awt.Dimension(145, 22));
 
         contentTxtarea.setEditable(false);
-        contentTxtarea.setBackground(new java.awt.Color(153, 153, 255));
+        contentTxtarea.setBackground(new java.awt.Color(224, 224, 250));
         contentTxtarea.setColumns(20);
         contentTxtarea.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         contentTxtarea.setRows(5);
         jScrollPane1.setViewportView(contentTxtarea);
 
-        msgTxtField.setBackground(new java.awt.Color(153, 153, 255));
+        msgTxtField.setBackground(new java.awt.Color(211, 211, 229));
         msgTxtField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         sendBtn.setBackground(new java.awt.Color(51, 0, 204));
         sendBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         sendBtn.setForeground(new java.awt.Color(255, 255, 255));
         sendBtn.setText("SEND");
+        sendBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendBtnActionPerformed(evt);
+            }
+        });
 
         missileBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         missileBtn.setForeground(new java.awt.Color(0, 102, 153));
@@ -186,12 +191,22 @@ public class Helicopter extends javax.swing.JFrame {
        if(jCheckBox1.isSelected()){
            DeffenceObserver.setPositionHeli(true);
        }else{
-           shootBtn.setEnabled(false);
-           laserBtn.setEnabled(false);
-           missileBtn.setEnabled(false);
            DeffenceObserver.setPositionHeli(false);
        }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
+        if(msgTxtField.getText().trim().isEmpty()){
+            //no masseges then no action
+        }else{
+            String heliMsg = msgTxtField.getText().trim();
+            DeffenceObserver.maincontroller.setMcMsgScreen(" Helicopter    : "+heliMsg);
+            String oldMsg = contentTxtarea.getText();
+            contentTxtarea.setText(oldMsg+"\n\n"+" Me                        : "+heliMsg);
+            
+            msgTxtField.setText("");
+        }
+    }//GEN-LAST:event_sendBtnActionPerformed
 
     /**
      * @param args the command line arguments

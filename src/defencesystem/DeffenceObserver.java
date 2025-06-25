@@ -5,10 +5,15 @@ public class DeffenceObserver {
     public static Helicopter helicopter;
     public static Submarine submarine;
     public static Tank tank;
+    public static MainController maincontroller;
     private static boolean positionHeli = false;
     private static boolean positionTank = false;
     private static boolean positionSubmarine = false;
     private static String mainControllerMsg;
+    
+    public static void registerWindow(MainController mc){
+        maincontroller = mc;
+    }
     
     public static void registerWindow(Helicopter hw){
         helicopter = hw;

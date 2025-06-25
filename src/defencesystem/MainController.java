@@ -12,6 +12,11 @@ public class MainController extends javax.swing.JFrame {
         setTitle("Main Controller");
         jComboBox1.setEnabled(false);
     }
+    
+    public void setMcMsgScreen(String heliMsg){
+        String oldMsg = recievedMsgTxtArea.getText();
+        recievedMsgTxtArea.setText(oldMsg+"\n\n"+heliMsg);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -223,13 +228,17 @@ public class MainController extends javax.swing.JFrame {
             
         }else{
             //Messages sends to all defences body
-            String msg =" MainController   : "+ sendMsgTextArea.getText();
+            String msg =" MainController   : "+ sendMsgTextArea.getText().trim();
             if(sendMsgTextArea.getText().trim().isEmpty()){
                 //TextArea empty Body
             }else{
                 //TextArea not empty Body
                 DeffenceObserver.setMainControllerMsg(msg);
+                String mcOldMsg = recievedMsgTxtArea.getText();
+                recievedMsgTxtArea.setText(mcOldMsg+"\n\n"+" Me                : "+sendMsgTextArea.getText().trim());
                 DeffenceObserver.helicopter.setMsgScreen(DeffenceObserver.getMainControllerMsg());
+                DeffenceObserver.submarine.setMsgScreen(DeffenceObserver.getMainControllerMsg());
+                DeffenceObserver.tank.setMsgScreen(DeffenceObserver.getMainControllerMsg());
                 sendMsgTextArea.setText("");
             }
             

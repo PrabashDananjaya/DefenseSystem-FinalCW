@@ -15,6 +15,11 @@ public class Submarine extends javax.swing.JFrame {
         
     }
     
+    public void setMsgScreen(String msg){
+        String oldMsg = contentTxtArea.getText();
+        contentTxtArea.setText(oldMsg+"\n\n"+msg);
+    }
+    
     
     public void setAreaStatus(int result){
         if(result == 0){
@@ -80,19 +85,26 @@ public class Submarine extends javax.swing.JFrame {
         areaStatusLbl.setForeground(new java.awt.Color(0, 102, 153));
         areaStatusLbl.setText("Area Not Cleared");
 
-        contentTxtArea.setBackground(new java.awt.Color(0, 204, 204));
+        contentTxtArea.setEditable(false);
+        contentTxtArea.setBackground(new java.awt.Color(224, 250, 250));
         contentTxtArea.setColumns(20);
         contentTxtArea.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         contentTxtArea.setRows(5);
         jScrollPane1.setViewportView(contentTxtArea);
 
-        msgTxtField.setBackground(new java.awt.Color(0, 204, 204));
-        msgTxtField.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        msgTxtField.setBackground(new java.awt.Color(161, 246, 246));
+        msgTxtField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        msgTxtField.setForeground(new java.awt.Color(28, 76, 80));
 
         sendBtn.setBackground(new java.awt.Color(0, 102, 102));
         sendBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         sendBtn.setForeground(new java.awt.Color(255, 255, 255));
         sendBtn.setText("SEND");
+        sendBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendBtnActionPerformed(evt);
+            }
+        });
 
         shootBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         shootBtn.setForeground(new java.awt.Color(0, 102, 102));
@@ -160,7 +172,7 @@ public class Submarine extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(sonarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(shootBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tomahawkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tridentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,12 +206,21 @@ public class Submarine extends javax.swing.JFrame {
             DeffenceObserver.setPositionSubmarine(true);
         }else{
             DeffenceObserver.setPositionSubmarine(false);
-            shootBtn.setEnabled(false);
-            tridentBtn.setEnabled(false);
-            tomahawkBtn.setEnabled(false);
-            sonarBtn.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox1StateChanged
+
+    private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
+        if(msgTxtField.getText().trim().isEmpty()){
+            //no masseges then no action
+        }else{
+            String subMsg = msgTxtField.getText().trim();
+            DeffenceObserver.maincontroller.setMcMsgScreen(" Submarine   : "+subMsg);
+            String oldMsg = contentTxtArea.getText();
+            contentTxtArea.setText(oldMsg+"\n\n"+" Me                        : "+subMsg);
+            
+            msgTxtField.setText("");
+        }
+    }//GEN-LAST:event_sendBtnActionPerformed
 
     /**
      * @param args the command line arguments
