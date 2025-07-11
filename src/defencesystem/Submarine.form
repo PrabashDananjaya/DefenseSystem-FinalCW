@@ -182,6 +182,7 @@
               <Color blue="66" green="66" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Shoot"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="sonarBtn">
@@ -193,6 +194,7 @@
               <Color blue="66" green="66" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Sonar Operation"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="tomahawkBtn">
@@ -204,6 +206,7 @@
               <Color blue="66" green="66" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tomahawk Missile"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="tridentBtn">
@@ -215,6 +218,7 @@
               <Color blue="66" green="66" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Trident - 2 Missile"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBox1">
@@ -230,9 +234,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Position"/>
           </Properties>
-          <Events>
-            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jCheckBox1StateChanged"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
